@@ -3,8 +3,8 @@ let app = express();
 let bodyParser = require('body-parser');
 
 let viewsPath = __dirname + "/views/";
-app.use(express.static('image'))
-app.use(express.static('css'));
+app.use(express.static('views/image'))
+app.use(express.static('views/css'));
 
 let db = []
 
