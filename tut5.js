@@ -3,6 +3,8 @@ let app = express();
 let bodyParser = require('body-parser');
 
 let viewsPath = __dirname + "/views/";
+app.use(express.static('image'))
+app.use(express.static('css'));
 
 let db = []
 
@@ -15,17 +17,25 @@ app.get('/', function(req,res){
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get('/addcustomerw5t1', function(req,res){
-    res.sendFile(viewsPath + "addcustomer.html");
+app.get('/addtask_', function(req,res){
+    res.sendFile(viewsPath + "addtask.html");
 });
 
-app.post('/addthiscustomerw5', function(req,res){
+app.post('/appendTask', function(req,res){
     console.log(req.body);
     db.push(req.body);
-    res.render(viewsPath + "allcustomer.html", {
-        customers: db
+    res.render(viewsPath + "listtask.html", {
+        task: db
     });
 });
+
+app.get('/listAll', function(req,res){
+    console.log(req.body);
+    db.push(req.body);
+    res.render(viewsPath + "listtask.html", {
+        task: db
+    });
+})
 
 
 
